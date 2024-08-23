@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17294801899",
+    "project_id": "daycare-2b587",
+    "storage_bucket": "daycare-2b587.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17294801899:android:0b0a10dd85da1a982477ae",
+        "android_client_info": {
+          "package_name": "com.example.daycare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzIn-E4tzNkmhd9LTw_Ds8pIFpRL6lglg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
