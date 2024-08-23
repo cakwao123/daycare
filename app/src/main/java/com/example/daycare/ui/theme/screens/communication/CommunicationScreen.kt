@@ -2,7 +2,6 @@ package com.example.daycare.ui.theme.screens.communication
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.provider.MediaStore
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +18,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Face
@@ -58,6 +58,8 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.daycare.R
+import com.example.daycare.navigation.ROUT_DASHBOARD
+import com.example.daycare.ui.theme.mybackground1
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,7 +75,7 @@ fun CommunicationScreen(navController: NavController){
         var selected by remember { mutableIntStateOf(0) }
         Scaffold(
             bottomBar = {
-                NavigationBar (containerColor = Color.Magenta) {
+                NavigationBar (containerColor = mybackground1) {
                     bottomNavItems.forEachIndexed { index, bottomNavItem ->
                         NavigationBarItem(
                             selected = index == selected,
@@ -112,14 +114,19 @@ fun CommunicationScreen(navController: NavController){
             },
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "CAROLS DAYCARE") },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Magenta)
+                    title = { Text(text = "About Us") },
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(mybackground1),
+                    navigationIcon = { IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "menu"
+                        )
+                    }}
                 )
             },
 
 
-            floatingActionButton = {
-                FloatingActionButton(onClick = { /*TODO*/ }) {
+            floatingActionButton = {FloatingActionButton(onClick = { /*TODO*/ }) {
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
                             imageVector = Icons.Default.Add,
@@ -129,9 +136,8 @@ fun CommunicationScreen(navController: NavController){
                 }
             },
             //Content Section
-            content = @Composable {
-                Column(
-                    modifier = Modifier
+            content = @Composable{
+                Column(modifier = Modifier
                         .fillMaxSize()
                         .padding(top = 80.dp, start = 20.dp),
 
@@ -150,7 +156,108 @@ fun CommunicationScreen(navController: NavController){
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.image1),
+                                    painter = painterResource(id = R.drawable.music),
+                                    contentDescription = "image",
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+
+                                )
+                                Icon(imageVector = Icons.Default.Favorite,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .align(Alignment.TopStart)
+                                        .padding(10.dp))
+
+
+                            }
+                        }
+                        //end of card 1
+                        Column(modifier = Modifier.padding(start = 20.dp)){
+                            Text(text = "Growing together,one day at a time", fontSize = 20.sp)
+                            Text(text = "learn.play.care!")
+                            Row {
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+
+                            }
+                            Text(text = "4,580 reviews")
+
+
+                        }
+
+
+                    }
+                    //end of row
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    //start row
+                    Row {
+                        //card 1
+                        Card(
+                            modifier = Modifier
+                                .height(180.dp)
+                                .width(200.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.art),
+                                    contentDescription = "image",
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+                                )
+
+                                Icon(imageVector = Icons.Default.Favorite,
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .align(Alignment.TopStart)
+                                        .padding(10.dp))
+
+
+                            }
+                        }
+                        //end of card 1
+                        Column(modifier = Modifier.padding(start = 20.dp)){
+                            Text(text = "Let your child learn with faith", fontSize = 20.sp)
+                            Text(text = "learn.play.care!")
+                            Row {
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "")
+
+                            }
+                            Text(text = "24,580 reviews")
+
+
+                        }
+
+
+                    }
+                    //end of row
+
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    //start row
+                    Row {
+                        //card 1
+                        Card(
+                            modifier = Modifier
+                                .height(180.dp)
+                                .width(200.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.play),
                                     contentDescription = "image",
                                     modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop
@@ -178,51 +285,17 @@ fun CommunicationScreen(navController: NavController){
 
                             }
                             Text(text = "54,580 reviews")
-                            Button(
-                                onClick = { val callIntent= Intent(Intent.ACTION_DIAL)
-                                    callIntent.data="tel:0720245837".toUri()
-                                    mContext.startActivity(callIntent)},
-                                colors = ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp)
-                            ) {
-                                Text(text = "Call")
-                            }
+
 
                         }
 
 
                     }
                     //end of row
-                    Spacer(modifier = Modifier.height(10.dp))
 
+                    Spacer(modifier = Modifier.height(40.dp))
 
-
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Button(onClick = {val smsIntent= Intent(Intent.ACTION_SENDTO)
-                        smsIntent.data="smsto:0720245837".toUri()
-                        smsIntent.putExtra("sms_body","Hello Glory,how was your day?")
-                        mContext.startActivity(smsIntent)
-
-                    },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp)
-                            .height(50.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Black),
-                        shape = RoundedCornerShape(10.dp)
-
-
-                    ) {
-                        Text(text = "SMS")
-
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Button(onClick = { val callIntent= Intent(Intent.ACTION_DIAL)
-                        callIntent.data="tel:0115123504".toUri()
-                        mContext.startActivity(callIntent)},
+                    Button(onClick = { navController.navigate(ROUT_DASHBOARD)},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 20.dp, end = 20.dp)
@@ -235,47 +308,6 @@ fun CommunicationScreen(navController: NavController){
                         Text(text = "CALL")
 
                     }
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Button(onClick = {  val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        shareIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("akinyiglory2@gmail.com"))
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "subject")
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello, this is the email body")
-                        mContext.startActivity(shareIntent)},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp)
-                            .height(50.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Black),
-                        shape = RoundedCornerShape(10.dp)
-
-
-                    ) {
-                        Text(text = "EMAIL")
-
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Button(onClick = {   val shareIntent= Intent(Intent.ACTION_SEND)
-                        shareIntent.type="text/plain"
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this is a cool content")
-                        mContext.startActivity(Intent.createChooser(shareIntent, "Share"))},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp)
-                            .height(50.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Black),
-                        shape = RoundedCornerShape(10.dp)
-
-
-                    ) {
-                        Text(text = "SHARE")
-
-                    }
-
 
 
                 }
@@ -309,8 +341,8 @@ val bottomNavItems = listOf(
     ),
 
     BottomNavItem(
-        title = "Property",
-        route="property",
+        title = "Communication",
+        route="communication",
         selectedIcon= Icons.Filled.Face,
         unselectedIcon= Icons.Outlined.Face,
         hasNews = true,

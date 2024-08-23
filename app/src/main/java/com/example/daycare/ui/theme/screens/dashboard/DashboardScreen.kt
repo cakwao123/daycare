@@ -2,8 +2,8 @@ package com.example.daycare.ui.theme.screens.dashboard
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,239 +35,184 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.daycare.R
-import com.example.daycare.navigation.ROUT_EMERGENCY
-import com.example.daycare.navigation.ROUT_HOME
-import com.example.daycare.ui.theme.mybrown
+import com.example.daycare.navigation.ADD_ACCOUNT
+import com.example.daycare.navigation.ADD_EMERGENCY
+import com.example.daycare.navigation.ADD_PAYMENT
+import com.example.daycare.navigation.ROUT_ACTIVITY
+import com.example.daycare.ui.theme.mybackground
+import com.example.daycare.ui.theme.mybackground1
 
 
 @Composable
 fun DashboardScreen(navController: NavController){
     Column (
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(mybackground),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(
-            text ="Carols Daycare",
-            fontSize = 40.sp,
-            fontFamily = FontFamily.Cursive,
-            color = Color.Magenta
-        )
+
         Spacer(modifier = Modifier.height(20.dp))
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.img),
             contentDescription ="home",
             modifier = Modifier
-                .size(250.dp)
-                .clip(shape = CircleShape),
-            contentScale = ContentScale.Crop
+                .size(100.dp)
+
 
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text ="LEARN.PLAY. GROW",
-            fontSize = 18.sp,
+            text ="CHILD'S CARE MANAGEMENT SOFTWARE",
+            fontSize = 35.sp,
             fontFamily = FontFamily.SansSerif,
-            color = Color.Black
+            color = Color.White,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
         Column (modifier = Modifier.verticalScroll(rememberScrollState())){
 
-            Card(modifier = Modifier.fillMaxWidth().height(700.dp),
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .height(700.dp),
                 shape = RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp),
-                colors = CardDefaults.cardColors(mybrown)
+                colors = CardDefaults.cardColors(mybackground1)
 
             ) {
-                //Row1
-                Row (modifier = Modifier.padding(20.dp)){
-                    //Card1
-                    Card (modifier = Modifier
-                        .height(150.dp)
-                        .width(130.dp)
-                        .clickable { navController.navigate(ROUT_HOME) }
-                    ){
-                        Column {
-                            Box (modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id = R.drawable.arrival),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(15.dp))
 
-                            Text(
-                                text ="ARRIVAL",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
+                Row(modifier = Modifier.padding(20.dp)){
 
 
-                        }
+                   Column (horizontalAlignment = Alignment.CenterHorizontally){
+                       Image(
+                           painter = painterResource(id = R.drawable.reg),
+                           contentDescription ="home",
+                           modifier = Modifier
+                               .size(150.dp)
+                               .clip(CircleShape),
+                           contentScale = ContentScale.Crop
 
+                       )
+
+                       Spacer(modifier = Modifier.height(10.dp))
+
+                       Text(
+                           text ="Register Your Child",
+                           fontSize = 20.sp,
+                           fontFamily = FontFamily.SansSerif,
+                           color = Color.Black,
+                           modifier = Modifier.clickable {
+                               navController.navigate(ADD_ACCOUNT)
+                           }
+                       )
+                   }
+
+                    Spacer(modifier = Modifier.width(35.dp))
+
+
+                    Column(horizontalAlignment = Alignment.CenterHorizontally){
+                        Image(
+                            painter = painterResource(id = R.drawable.contact),
+                            contentDescription ="home",
+                            modifier = Modifier
+                                .size(150.dp)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
+
+                        )
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Text(
+                            text ="Contact Emergency Desk",
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily.SansSerif,
+                            color = Color.Black,
+                            modifier = Modifier.fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(ADD_EMERGENCY)
+                                },
+                            textAlign = TextAlign.Center
+                        )
                     }
-                    //End of card1
-
-                    Spacer(modifier = Modifier.width(20.dp))
-
-                    //Card1
-                    Card (modifier = Modifier.height(180.dp).width(160.dp)
-                    ){
-                        Column {
-                            Box (modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id = R.drawable.art),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(15.dp))
-
-                            Text(
-                                text ="ART TIME",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
 
 
-                        }
 
-                    }
-                    //End of card1
 
                 }
-                //End of row1
-                //Row1
+
+
+
                 Row (modifier = Modifier.padding(20.dp)){
-                    //Card1
-                    Card (modifier = Modifier.height(180.dp).width(160.dp)
-                    ){
-                        Column {
-                            Box (modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id = R.drawable.`fun`),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
+
+
+                    Column (horizontalAlignment = Alignment.CenterHorizontally){
+                        Image(
+                            painter = painterResource(id = R.drawable.about),
+                            contentDescription ="home",
+                            modifier = Modifier
+                                .size(150.dp)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
+
+                        )
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Text(
+                            text ="Daily Schedule",
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily.SansSerif,
+                            color = Color.Black,
+                            modifier = Modifier.clickable {
+                                navController.navigate(ROUT_ACTIVITY)
                             }
-                            Spacer(modifier = Modifier.height(15.dp))
+                        )
+                    }
 
-                            Text(
-                                text ="FUN TIME",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
+                    Spacer(modifier = Modifier.width(35.dp))
 
 
-                        }
+                    Column (horizontalAlignment = Alignment.CenterHorizontally){
+                        Image(
+                            painter = painterResource(id = R.drawable.pay),
+                            contentDescription ="home",
+                            modifier = Modifier
+                                .size(150.dp)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
+
+                        )
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Text(
+                            text =" Make Payment",
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily.SansSerif,
+                            color = Color.Black,
+                            modifier = Modifier.clickable {
+                                navController.navigate(ADD_PAYMENT)
+                            }
+                        )
+
 
                     }
-                    //End of card1
-
-                    Spacer(modifier = Modifier.width(20.dp))
-
-                    //Card1
-                    Card (modifier = Modifier.height(180.dp).width(160.dp)
-                    ){
-                        Column {
-                            Box (modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id = R.drawable.lunchtime),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(15.dp))
-
-                            Text(
-                                text ="LUNCH TIME",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
 
 
-                        }
 
-                    }
-                    //End of card1
 
                 }
-                //Row1
-                Row (modifier = Modifier.padding(20.dp)){
-                    //Card1
-                    Card (modifier = Modifier.height(180.dp).width(160.dp)
-                    ){
-                        Column {
-                            Box (modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id = R.drawable.music),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(15.dp))
-
-                            Text(
-                                text ="MUSIC",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
 
 
-                        }
-
-                    }
-                    //End of card1
-
-                    Spacer(modifier = Modifier.width(20.dp))
-
-                    //Card1
-                    Card (modifier = Modifier
-                        .clickable { navController.navigate(ROUT_EMERGENCY) }
-                        .height(180.dp).width(160.dp)
-                    ){
-                        Column {
-                            Box (modifier = Modifier
-                                .fillMaxWidth(),
-                                contentAlignment = Alignment.Center){
-                                Image(painter = painterResource(id =R.drawable.pickups),
-                                    contentDescription ="",
-                                    modifier = Modifier.size(100.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(15.dp))
-
-                            Text(
-                                text ="PICKUP TIME",
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily.Cursive,
-                                color = Color.Black,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-                            )
 
 
-                        }
 
-                    }
-                    //End of card1
 
-                }
+
+
 
             }
 
